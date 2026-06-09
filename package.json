@@ -24,6 +24,7 @@
     "body-parser": "^2.2.2",
     "compression": "^1.8.1",
     "discord.js": "^14.26.4",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongo-cache": "github:c3pobot/mongo-cache"
   }
 }
