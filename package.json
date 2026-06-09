@@ -1,0 +1,29 @@
+{
+  "name": "discord-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update": "chmod a+x updategitdependency.sh && ./updategitdependency.sh",
+    "build": "chmod a+x buildtest.sh && ./buildtest.sh c3pobot/discord-rest",
+    "prod": "chmod a+x buildprod.sh && ./buildprod.sh c3pobot/discord-rest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c3pobot/discord-rest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c3pobot/discord-rest/issues"
+  },
+  "homepage": "https://github.com/c3pobot/discord-rest#readme",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "compression": "^1.8.1",
+    "discord.js": "^14.26.4",
+    "express": "^5.2.1"
+  }
+}

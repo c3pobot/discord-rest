@@ -1,0 +1,25 @@
+FROM node:22-alpine AS builder
+RUN apk add --no-cache python3 make g++
+COPY package*.json ./
+# don't install dev dependencies for the docker image
+RUN npm install --omit=dev
+RUN npm install zlib-sync
+
+FROM node:22-alpine AS app
+LABEL org.opencontainers.image.source=https://github.com/c3pobot/discord-rest
+WORKDIR /app
+ENV NODE_PATH=/app
+RUN apk update && \
+  # wrap process in --init in order to handle kernel signals
+  # https://github.com/krallin/tini#using-tini
+  apk add --no-cache tini && \
+  rm -rf /var/cache/apk/*
+
+COPY --from=builder node_modules node_modules/
+COPY --from=builder package*.json ./
+COPY index.js index.js
+COPY src ./src
+RUN npm install -g nodemon
+USER node
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD [ "nodemon", "--trace-warnings", "--trace-deprecation", "./index.js"  ]

@@ -1,0 +1,5 @@
+{
+    "name": "updatecmds",
+    "description": "[bot owner] updates bot commands",
+    "default_member_permissions": 0
+}
